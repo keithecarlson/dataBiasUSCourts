@@ -1,0 +1,73 @@
+For our analysis we downloaded the data on January 9th of 2018. The available data from courtlistener may have been updated since then giving you slightly different files.  We have provided these files in their raw form also to allow exact replication.  These steps can be skipped if you are happy to use the cleaned and curated data we provided.
+
+
+*****Download json data*****
+For circuits 1-11 and dc download opinons from:
+https://www.courtlistener.com/api/bulk-data/opinions/ca1.tar.gz
+https://www.courtlistener.com/api/bulk-data/opinions/ca2.tar.gz
+https://www.courtlistener.com/api/bulk-data/opinions/ca3.tar.gz
+.
+.
+https://www.courtlistener.com/api/bulk-data/opinions/ca11.tar.gz
+https://www.courtlistener.com/api/bulk-data/opinions/cadc.tar.gz
+
+
+Create a "Data" folder and an "opinions" folder within that.  Put these 12 files in the "opinions" folder.
+Extract each into folders "ca1"-"cadc" within "opinions" folder.
+Delete the .tar and .tar.gz files so the "opinions" folder contains only the 12 "ca" folders.
+
+
+For all circuits download clusters from:
+https://www.courtlistener.com/api/bulk-data/clusters/ca1.tar.gz
+.
+.
+https://www.courtlistener.com/api/bulk-data/clusters/cadc.tar.gz
+
+Create "clusters" folder within "Data" folder and move these files there.
+Extract each into "ca1"-"cadc" within "clusters" and delete the .tar and .tar.gz files.
+
+********Find meta data for each judge on each circuit
+download the auburn judge data set from http://www.cas.sc.edu/poli/juri/auburn_appct_stata.zip
+Extract the contents of the zip to a Data/judges folder
+
+run python judgeMetaDataExtractor.py to create a spreadsheet of all the required fields
+
+Manually research and update the end dates to include senior status , new deaths/retirements, and to add any new judges(since the data only goes up to 2004).  The newly added judges need to be formatted the same way as the others in the file, so names are written as lastName< FirstName , circuit is just a number from 1-12 (with 12 being the dc circuit), and party will be 1 if the judge was appointed by a Democratic president and 0 if a Republican.
+
+Once end year has been updated to reflect senior status, delete all judges who ended service before 1970.
+
+For the 11th circuit, judges moved to the circuit when it was created, but this is not reflected in the data.  For each judge who was moved to the 11th circuit when it was created you need to add a second entry for them reflecting their time on the 11th circuit and update the end date of their previous circuit.
+
+Judges with multi-word last names should be replaced by a single name to make searching for them in opinons simpler.  For example, "Van Orsdel< Josiah A." is replaced with "Orsdel< Josiah A." and "Torruella del Valle< Juan R." is replaced with "Torruella< Juan R." 
+
+A second entry for John P. Moore was added as Porfilio< John, since he is often called this in the text.
+
+John Gibson of the 8th circuit is listed as starting in 1989 in the original data, but he actually started in 1982 and so we update this record in the csv file.
+
+AuburnDataAppointingPresParty.csv should now have all of the judges, their circuit, appointing president's party, starting year, and end of service(including years of senior status)
+
+*****Extract the text of the cases from the downloaded opinions******
+
+This step may take approximately a day.
+
+Run textExtractor.py:
+	python textExtractor.py
+
+This will go through each of the 12 circuits and create 2 files for each of them.  This makes use of the opinions, clusters, and judges data from above. 
+
+The first file will be a "...DataForSTM.csv" file containing one line per case output to the Data/stmCSV/ folder.  The records will contain the filename of case, the text, the political parties of the appointing presidents of the judges on the case, the year the case was filed, the circuit the case was on, the names of the judges, whether the case was between the United States and another entity, and whether the case involved a corporation as a litigant.  Additionally, the script will randomly permute the parties of the judges (within each circuit) 100 times and write out the parties of the judges on each case according to the permuted assignment.  These permuted party labels will be used later in the topic model.
+
+The second file, "...pruningStats.txt" output to Results/pruningStats, will be a text file telling how many of the opinions were removed from consideration for each of the various reasons that pruning occurs. The pruning process is as follows:
+
+1. We start with all of the opinions for that circuit that were downloaded from courtlistener.  These opinion files have a field indicating the corresponding cluster and we remove any opinions where that cluster is not in the downloaded data.
+2. We remove all files whose precedential_status is not marked as 'Published' within the opinion file.
+3. We remove files where the opinion file has not populated the federal_cite_one field which should tell us the federal citation number of the case.
+4. We eliminate all opinions from before 1970.
+5. We eliminate all opinions from after 2010.
+6. We look at the html, html_lawbox, html_columbia, and html_with_citations fields to see if any of them are populated and remove cases where they were not.  These html fields contain html versions of the text of the case which we then process into plain text.  There is also a "plain_text" field which we elect not to use since it was sometimes unpopulated, and also does not contain the federal citation number in the text itself, which we use as an additional validation soon.
+7. We remove all cases whose text is not at least 3kb in size.
+8. We remove all cases where the federal reporter citation listed in the opinion file does not appear at the top of the text of the case.  This step elminates some errors we found in the data where the metadata (year, circuit, etc) of one case was incorrectly paired with the text of a completely different case.
+9. We identify the judges on the case.  If there do not seem to be exactly three judges who were active during the year of the case and from the correct circuit we eliminate the case.  This eliminates cases where judges are sitting by designation, or where there are actually more than or less than three judges on the panel.
+
+
+At this point you should have 4 folders within "Data".  They are opinions, clusters, judges, and stmCSV.  The stmCSV folder contains the main data which will be used for most of the remaining analysis.  The judges, opinions, and clusters folder will still be used by some code.  You should also have a Results/pruningStats folder with a file for each circuit and a Results/validationSample folder with 100 cases and their tagged judges, USParty, and corpParty labels.

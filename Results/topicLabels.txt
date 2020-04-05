@@ -1,0 +1,50 @@
+Procedure (1) court, district, jurisdict, case
+Sentencing (2) sentenc, court, district, guidelin
+Immunity (3) offic, judgment, summari, immun
+Insurance (4) insur, polici, coverag, court
+Labor (5) union, employe, board, labor
+Antitrust (6) sale, price, market, busi
+Equal protection (7) court, district, white, black
+ERISA (8) plan, benefit, fund, employe
+Environmental (9) standard, epa, requir, regul
+Disability (10) medic, disabl, evid, work
+Education (11) school, board, educ, district
+Bankruptcy (12) bankruptci, court, debtor, creditor
+Privilege (13) appel, inform, record, document
+Immigration (14) persecut, asylum, evid, applic
+Contracts (15) agreement, contract, arbitr, parti
+Admin. (16) servic, secretari, agenc, regul
+Crim. Trials (17) court, trial, counsel, murder
+Tort (18) injuri, court, caus, liabil
+Workers' Comp. (19)  compens, mine, employ, coal
+Crim. Pro. (20) count, govern, defend, charg
+Crim. Pro. (21) offic, search, arrest, warrant
+Credit (22) bank, secur, loan, stock
+Employment (23) employ, employe, discrimin, work
+Common Carrier (24) commiss, servic, carrier, railroad
+Fees (25) fee, court, award, damag
+Native American (26) foreign, indian, tribe, govern
+Procedure (27) court, motion, district, file
+Admiralty (28) vessel, court, ship, oper
+Criminal (29) convict, offens, crime, firearm
+Children (30) child, children, sexual, parent
+Labor (31) member, committe, associ, organ
+Tax (32) tax, incom, taxpay, commission
+Federal/State (33) state, law, feder, new
+Evidence (34) statement, testimoni, testifi, wit
+Family (35) settlement, mrs, consent, bond
+Habeas (36) court, state, petit, petition
+Licensing (37) licens, power, facil, oper
+Procedure (38) plaintiff, claim, defend, complaint
+Immigration (39) alien, deport, immigr, remov
+Water (40) water, project, environment, area
+Counsel (41) counsel, defend, court, trial
+Constitutional (42) public, amend, court, constitut
+Statutes (43) section, sec, act, statut
+Prisons (44) prison, process, due, right
+Property (45) properti, leas, interest, land
+IP (46) use, court, patent, copyright, mark
+Ratemaking (47) rate, gas, commiss, cost
+Trials (48) juri, evid, trial, court
+Drug crimes (49) drug, cocain, conspiraci, govern
+Transportation (50) air, certif, travel, transport
