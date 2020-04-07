@@ -77,10 +77,10 @@ This will create preparedData.Rdata in a newly created directory "Data/RData" wh
 
 This may take a long time (several days when run on our cluster) but will fit a 50 topic STM on all of our documents.  It will save the model to Data/RData and will output the top words associated with each topic to Results/topicModelWords.  At this point you should look at the words associated with each topic and name them for future use in creation of figures, etc. For each topic 1-50, one topic per line, write out the label you would like to assign to a file "Results/topicLabels.txt". For example, the first line in our file reads "Procedure (1) court, district, jurisdict, case". These labels are used when discussing topics in the paper and for some figures/tables. We have included the topic labels file that we used in this project.
 
-10.  Now we will fit another 50 topic model on the full dataset, but after permuting the documents' DMP assignments.
-
-	R -f permModelRun.R
-
+10. Now we will fit another 50 topic model on the full dataset, but after permuting the documents' DMP assignments.
+	
+		R -f permModelRun.R
+		
 This will again take a while but will produce "Data/RData/50TopicPermDMP.Rdata" holding the fully fit topic model with permuted DMP tags.
 
 11. To simplify some future commands for some regressions, etc, run:
