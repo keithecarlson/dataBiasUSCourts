@@ -39,7 +39,7 @@ We can install needed libraries by activating the environment and using pip.  Fo
 
 3. If you wish to process the data that we received from the source then follow Dataset Reconstruction Instructions, to create 12 ca{X}DataForSTM.csv files within "Data/stmCSV".  This will also create Results/pruningStats and results/validationSample folders. 
 
-Alternatively, you can skip this step and simply use our already pruned and processed data that is provided.  Either way, you should have a Data/stmCSV folder with 12 files in it, a Data/judges folder with a single file titled 'auburnDataAppointingPresParty.csv', and a file 'Data/uscaopsData01.csv' before you proceed.
+Alternatively, you can skip this step and simply use our already [pruned and processed data](https://math.dartmouth.edu/~jelsdatabiasuscourts/dataset/Data.tar.gz) that is provided.  Either way, you should have a Data/stmCSV folder with 12 files in it, a Data/judges folder with a single file titled 'auburnDataAppointingPresParty.csv', and a file 'Data/uscaopsData01.csv' before you proceed.
 
 4. We will make the plot showing publication rate from 1997-2016 which is in the paper.  Make sure that the file uscaopsData01.csv exists in the Data directory then run:
 
