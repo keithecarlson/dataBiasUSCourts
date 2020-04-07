@@ -1,6 +1,6 @@
 This file contains detailed step-by-step instructions to reproduce all results of our experiment.  All provided code files should be run from within the "Code" directory.
 
-1. First we will setup the environments to be sure we have the correct versions of various libraries installed and that they don't change during our full run of the analysis.  Setup a packrat R environment (http://rstudio.github.io/packrat/walkthrough.html) in the Code directory of your project.  We use packrat version 0.5.0.  You can attempt to use our bundled version of the packrat project, but we have not tested this on other systems so it is possible you will encounter issues.  To try this, download 'dataBiasCode.tar.gz'.  Create a directory for the project and then within that directory run R.  In R you will enter the command:
+1. First we will setup the environments to be sure we have the correct versions of various libraries installed and that they don't change during our full run of the analysis.  Setup a packrat R environment (http://rstudio.github.io/packrat/walkthrough.html) in the Code directory of your project.  We use packrat version 0.5.0.  You can attempt to use our bundled version of the packrat project, but we have not tested this on other systems so it is possible you will encounter issues.  To try this, download ['dataBiasCode.tar.gz'](https://math.dartmouth.edu/~jelsdatabiasuscourts/dataset/dataBiasCode.tar.gz).  Create a directory for the project and then within that directory run R.  In R you will enter the command:
 
 	packrat::unbundle("dataBiasCode.tar.gz",".")
 
@@ -37,7 +37,7 @@ We can install needed libraries by activating the environment and using pip.  Fo
 	pip install scipy
 	pip install statsmodels
 
-3. If you wish to process the data that we received from the source then follow Dataset Reconstruction Instructions, to create 12 ca{X}DataForSTM.csv files within "Data/stmCSV".  This will also create Results/pruningStats and results/validationSample folders. 
+3. If you wish to process the data that we received from the source then you can [download it here](https://math.dartmouth.edu/~jelsdatabiasuscourts/dataset/rawData.tar.gz), rename the folder to "Data" and follow Dataset Reconstruction Instructions, to create 12 ca{X}DataForSTM.csv files within "Data/stmCSV".  This will also create Results/pruningStats and results/validationSample folders. 
 
 Alternatively, you can skip this step and simply use the [pruned and processed data](https://math.dartmouth.edu/~jelsdatabiasuscourts/dataset/Data.tar.gz) that is provided.  Either way, you should have a Data/stmCSV folder with 12 files in it, a Data/judges folder with a single file titled 'auburnDataAppointingPresParty.csv', and a file 'Data/uscaopsData01.csv' before you proceed.
 
