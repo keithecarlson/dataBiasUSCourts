@@ -79,7 +79,7 @@ This may take a long time (several days when run on our cluster) but will fit a 
 
 10.  Now we will fit another 50 topic model on the full dataset, but after permuting the documents' DMP assignments.
 
-		R -f permModelRun.R
+	R -f permModelRun.R
 
 This will again take a while but will produce "Data/RData/50TopicPermDMP.Rdata" holding the fully fit topic model with permuted DMP tags.
 
@@ -129,7 +129,7 @@ This will create and save the figure in Results/Figures/figure5.png
 
 18. We will now compare the results from the regressions predicting topic prevalence from majorityParty, year, and circuit for the true data and permuted data 50 topic models.
 
-	python averageEffectSize.py
+		python averageEffectSize.py
 
 This will create Results/topicRegressionResults/effectSizeKSTest.txt which tells us the average effect size and standard deviation for the 10 biggest effects in each model.  It also performs a KS test to see if they could have been drawn from the same distribution.
 
